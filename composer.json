@@ -1,0 +1,16 @@
+{
+    "name": "psu-libraries/solr_export_config",
+    "description": "Export solr config alongside drupal config",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/search_api_solr": "^4"
+    },
+    "authors": [
+        {
+          "name": "Dann Bohn",
+          "homepage": "https:/www.drupal.org/u/dannbohn",
+          "role": "Maintainer"
+        }
+      ]
+}

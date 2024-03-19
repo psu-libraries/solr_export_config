@@ -1,0 +1,5 @@
+services:
+  solr_export_config.commands:
+    class: Drupal\solr_export_config\Commands\SolrExportConfigCommands
+    tags:
+      - { name: drush.command }
