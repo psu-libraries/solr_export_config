@@ -15,6 +15,16 @@ Install the module
 composer require psu-libraries/solr_export_config
 ```
 
+Enable the module 
+```
+drush en solr_export_config
+```
+
+Export config
+```
+drush config:export
+```
+
 
 ### configuration 
 basedir for storing solr server configuration. the solr configuration will end up in {{ solr_conf_dir }}/{{ solr_server_id }}
