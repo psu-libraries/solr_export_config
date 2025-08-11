@@ -1,5 +1,8 @@
 services:
   solr_export_config.commands:
     class: Drupal\solr_export_config\Commands\SolrExportConfigCommands
+    arguments:
+      # - '@logger.factory'
+      - '@config.factory'
     tags:
       - { name: drush.command }
