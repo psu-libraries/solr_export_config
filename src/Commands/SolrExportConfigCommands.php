@@ -7,7 +7,6 @@ namespace Drupal\solr_export_config\Commands;
 use Consolidation\AnnotatedCommand\CommandData;
 use Consolidation\AnnotatedCommand\Hooks\HookManager;
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drush\Commands\AutowireTrait;
 use Drush\Commands\DrushCommands;
 use Drush\Attributes as CLI;
 use Symfony\Component\Process\Process;
@@ -16,7 +15,6 @@ use Symfony\Component\Process\Process;
  * Adding drush command to export solr configset after config:export runs.
  */
 class SolrExportConfigCommands extends DrushCommands {
-  use AutowireTrait;
 
   /**
    * Constructs a new SolrExportConfigCommands object.
