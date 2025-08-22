@@ -1,0 +1,4 @@
+# Development artifacts
+.DS_Store
+.vscode
+/vendor/
