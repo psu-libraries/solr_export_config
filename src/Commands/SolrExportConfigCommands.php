@@ -7,6 +7,7 @@ namespace Drupal\solr_export_config\Commands;
 use Consolidation\AnnotatedCommand\CommandData;
 use Consolidation\AnnotatedCommand\Hooks\HookManager;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drush\Commands\DrushCommands;
 use Drush\Attributes as CLI;
 use Symfony\Component\Process\Process;
@@ -21,9 +22,12 @@ class SolrExportConfigCommands extends DrushCommands {
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
    *   The config factory.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *   The entity type manager.
    */
   public function __construct(
     protected ConfigFactoryInterface $configFactory,
+    protected EntityTypeManagerInterface $entityTypeManager,
   ) {}
 
   /**
@@ -34,15 +38,14 @@ class SolrExportConfigCommands extends DrushCommands {
     $config = $this->configFactory->get('solr_export_config.settings');
     $ids = [];
 
-    // Get all the search API servers.
-    $command = ['drush', 'sapi-sl', '--format=json'];
-    $process = new Process($command);
-    $process->run();
-    $output = $process->getOutput();
-    $sapi_servers = json_decode($output, TRUE);
+    // Get all the enabled search API solr servers.
+    $sapi_storage = $this->entityTypeManager->getStorage('search_api_server');
+    $servers = $sapi_storage->loadMultiple();
 
-    foreach ($sapi_servers as $server) {
-      $ids[] = $server['id'];
+    foreach ($servers as $server) {
+      if ($server->status() && $server->getBackendId() === 'search_api_solr') {
+        $ids[] = $server->id();
+      }
     }
 
     // Export server config for each server that we found.
