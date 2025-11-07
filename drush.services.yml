@@ -3,5 +3,6 @@ services:
     class: Drupal\solr_export_config\Commands\SolrExportConfigCommands
     arguments:
       - '@config.factory'
+      - '@entity_type.manager'
     tags:
       - { name: drush.command }

@@ -1,6 +1,6 @@
 # Solr Export Config
 
-A drupal module, that will export search_api_solr solr server configuration after each `drush config:export`
+A drupal module, that will export enabled search_api_solr solr server configuration after each `drush config:export`
 
 ### Installation
 
