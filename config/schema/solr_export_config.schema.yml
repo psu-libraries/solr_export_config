@@ -1,0 +1,11 @@
+solr_export_config.settings:
+  type: config_object
+  label: 'Solr Export Config settings'
+  mapping:
+    solr_conf_dir:
+      type: string
+      label: 'Solr configuration directory'
+      constraints:
+        Regex:
+          pattern: '/^\/.*/'
+          message: 'The path %value has to start with a slash.'

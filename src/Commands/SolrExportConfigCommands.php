@@ -32,6 +32,11 @@ class SolrExportConfigCommands extends DrushCommands {
 
   /**
    * React to the config:export, export solr configs post config:export.
+   *
+   * @param mixed $result
+   *   The result of the command.
+   * @param \Consolidation\AnnotatedCommand\CommandData $commandData
+   *   The command data.
    */
   #[CLI\Hook(type: HookManager::POST_COMMAND_HOOK, target: 'config:export')]
   public function postConfigExport($result, CommandData $commandData): void {
@@ -40,6 +45,7 @@ class SolrExportConfigCommands extends DrushCommands {
 
     // Get all the enabled search API solr servers.
     $sapi_storage = $this->entityTypeManager->getStorage('search_api_server');
+    /** @var \Drupal\search_api\ServerInterface[] $servers */
     $servers = $sapi_storage->loadMultiple();
 
     foreach ($servers as $server) {
