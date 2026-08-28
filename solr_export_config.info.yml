@@ -1,5 +1,5 @@
 name: Solr Export Config
 type: module
 description: Export Solr config when running config:export
-core_version_requirement: ^10 || ^11
+core_version_requirement: ^11 || ^12
 package: PSU Libraries
